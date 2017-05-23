@@ -1,0 +1,19 @@
+todo lo que está con $ son variables
+--------------------------------
+[1] git init 			-> iniciar rempositorio de git
+[2] git remote add origin $URL	-> agrega una fuente de donde vienen los cambios || donde $URL es el link al repositorio (ej:https://github.com/BALJ55/ProyectoFInalASM.git)
+[3] git pull origin master		-> mueve el repositorio remoto a local
+[4] git add .			-> agrega los cambios realizados
+[5] git commit -m "$"		-> le pone nombre a los cambios realizados || donde "$" es el nombre de los cambios (ej: función que mueve el servo)
+[6] git push origin master		-> empuja los cambios al repositorio remoto
+
+[7] git status			-> muestra los cambios en el repositorio local
+[8] git checkot $			-> elimina los cambios en el repositoro local || donde $ es el nombre del archivo cuyos cambios se van a remover (si se ingresa * elimina TODOS los cambios trabajados)
+[9] git log				-> muestra la lista entera de "commits" (cambios) realizados
+
+#################################################################################################################################
+
+----------------------------------------------------------NOTAS IMPORTANTES-------------------------------------------------------
+
+1) siempre que van a trabajar algo, hacen pull [2]
+2) para empujar cambios para todos tienen que hacer [4]->[5]->[6]
