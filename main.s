@@ -29,10 +29,10 @@ main:
 	bl SetGpio
 	
 	ldr r0,=Menumsj
-	bl printf
+	bl puts
 	
 	ldr r0,=selectO
-	bl printf
+	bl puts
 	
 	ldr r0,=opcionSeleccionada
 	ldr r1,=fill
@@ -47,7 +47,7 @@ main:
 	
 menuS:
 	ldr r0,=optionsmsj
-	bl printf
+	bl puts
 	
 	ldr r0,=opcionSeleccionada
 	ldr r1,=fill
@@ -155,7 +155,7 @@ opcion4:
 	
 errorS:
 	ldr r0,=error
-	bl printf
+	bl puts
 	b menuS
 
 
@@ -165,7 +165,7 @@ errorS:
 .align 2
 .global myloc
 
-Menumsj: .word "Bienvenido al al programa\n "
+Menumsj: .asciz "Bienvenido al al programa\n "
 selectO: .asciz "Desea controlar el programa por texto o botones? (1/2)"
 optionsmsj: .asciz "Seleccione su opcion:\n 1) 0deg\n2) 45deg\n 3)90deg\n 4)180deg"
 opcionSeleccionada: .asciz "%d"
