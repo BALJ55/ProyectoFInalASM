@@ -10,24 +10,25 @@ main:
 	ldr r0,=Menumsj
 	bl puts
 	
-	/*
+	
 	@GPIO para escritura (salida) puerto 21  [PWD]
-	mov r0,#21
+	mov r0,#5 @@21
 	mov r1,#1
 	bl SetGpioFunction
 	
 
 
 	@GPIO para lectura (entrada) puerto 26 [BOTON 1] 
-	mov r0,#26
+	mov r0,#6 @@26
 	mov r1,#0
 	bl SetGpioFunction
 
 	@GPIO para lectura (entrada) puerto 19 [BOTON 2]
-	mov r0,#19
+	mov r0,#13 @@19
 	mov r1,#0
 	bl SetGpioFunction
 	
+	/*
 	mov r0, #21
 	mov r1,#0
 	bl SetGpio
