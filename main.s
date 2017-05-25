@@ -7,15 +7,15 @@ main:
 	@utilizando la biblioteca GPIO (gpio0_2.s)
 	bl GetGpioAddress
 	
+	ldr r0,=Menumsj
+	bl puts
 	
-	
+	/*
 	@GPIO para escritura (salida) puerto 21  [PWD]
 	mov r0,#21
 	mov r1,#1
 	bl SetGpioFunction
-	
-	ldr r0,=Menumsj
-	bl puts
+	*/
 
 
 	@GPIO para lectura (entrada) puerto 26 [BOTON 1] 
@@ -23,7 +23,7 @@ main:
 	mov r1,#0
 	bl SetGpioFunction
 
-	@GPIO para lectura (entrada) puerto 14 [BOTON 2]
+	@GPIO para lectura (entrada) puerto 19 [BOTON 2]
 	mov r0,#19
 	mov r1,#0
 	bl SetGpioFunction
