@@ -1,9 +1,7 @@
-.global	main
-	.align 2
 
-.func main
-.global main
-
+ .text
+ .align 2
+ .global main
 main:
 
 	@utilizando la biblioteca GPIO (gpio0_2.s)
