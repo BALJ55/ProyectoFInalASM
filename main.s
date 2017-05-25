@@ -2,6 +2,8 @@
 	.align 2
 
 .func main
+.global main
+
 main:
 
 	@utilizando la biblioteca GPIO (gpio0_2.s)
@@ -66,7 +68,7 @@ menuS:
 	cmp r4,#4
 	beq opcion4
 	
-	b error
+	b errorS
 	
 menuH:
 
@@ -151,16 +153,17 @@ opcion4:
 	bne menuH
 /*-------------------------------------------------*/
 	
-error:
+errorS:
 	ldr r0,=error
 	bl printf
-	b menu
+	b menuS
 
 
 @@-- SUBRUTINAS -- 
 
 .data
 .align 2
+.global myloc
 
 Menumsj: .asciz "Bienvenido al al programa\n "
 selectO: .asciz "Desea controlar el programa por texto o botones? (1/2)"
@@ -168,4 +171,5 @@ optionsmsj: .asciz "Seleccione su opcion:\n 1) 0deg\n2) 45deg\n 3)90deg\n 4)180d
 opcionSeleccionada: .asciz "%d"
 fill: .word 0
 error: .asciz "Opcion no valida, intente de nuevo"
+myloc: .word 0
 @@ZONA DE STRINGS

@@ -28,7 +28,7 @@ delayReg:.word 1000000
 @ Input: r0 delay counter val
 @ ---------------------------
 delay:
-    mov r7,#0
+    mov r7,#-2
 
     b compare
 loop:
