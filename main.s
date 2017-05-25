@@ -7,7 +7,7 @@ main:
 	@utilizando la biblioteca GPIO (gpio0_2.s)
 	bl GetGpioAddress 
 	
-	@GPIO para escritura (salida) puerto 15  [PWD]
+	@GPIO para escritura (salida) puerto 21  [PWD]
 	mov r0,#21
 	mov r1,#1
 	bl SetGpioFunction
@@ -21,6 +21,10 @@ main:
 	mov r0,#19
 	mov r1,#0
 	bl SetGpioFunction
+	
+	mov r0, #21
+	mov r1,#0
+	bl SetGpio
 	
 	ldr r0,=Menumsj
 	bl printf
@@ -65,9 +69,20 @@ menuS:
 	b error
 	
 menuH:
+
 @@TODO: FUNCION PARA CONTROLAR CON BOTONES 
 	
 opcion1:
+	mov r0, #5
+	mov r1,#1
+	bl SetGpio
+	@@DELAY
+	mov r0, #21
+	mov r1,#1
+	bl SetGpio
+	@@DELAY
+	
+	
 @@TODO: FUNCION PARA MOVER 0
 
 opcion2:
@@ -80,7 +95,7 @@ opcion3:
 
 opcion4:
 @@TODO: FUNCION PARA MOVER 180
-	
+PU	
 error:
 	ldr r0,=error
 	bl printf
