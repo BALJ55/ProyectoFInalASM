@@ -1,6 +1,7 @@
-/*** Using LEN and STRIDE to sum vectors ***/
-	.global	main
-	.func main
+.global	main
+	.align 2
+
+.func main
 main:
 @@CÓDIGO
 
