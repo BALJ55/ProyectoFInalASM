@@ -37,9 +37,9 @@ main:
 	bl scanf
 	
 	ldr r0, =opcionSeleccionada
-	ldr r1,[r0]
+	ldr r10,[r0]
 	
-	cmp r1, #1
+	cmp r10, #1
 	beq menuS
 	bne menuH
 	
@@ -71,31 +71,86 @@ menuS:
 menuH:
 
 @@TODO: FUNCION PARA CONTROLAR CON BOTONES 
-	
+	/*-------------------------------------------------*/
+
 opcion1:
-	mov r0, #5
-	mov r1,#1
-	bl SetGpio
-	@@DELAY
+@@mover a 0deg
+
 	mov r0, #21
-	mov r1,#1
+	mov r1,#1	@encendido
 	bl SetGpio
+	
 	@@DELAY
 	
+	mov r0, #21
+	mov r1,#1	@apagado
+	bl SetGpio
 	
-@@TODO: FUNCION PARA MOVER 0
+	cmp r10,#1
+	beq menuS
+	bne menuH
+	
+/*-------------------------------------------------*/
+
+/*-------------------------------------------------*/
 
 opcion2:
-@@TODO: FUNCION PARA MOVER 45
+@@mover a 45deg
+	mov r0, #21
+	mov r1,#1	@encendido
+	bl SetGpio
+	
+	@@DELAY
+	
+	mov r0, #21
+	mov r1,#1	@apagado
+	bl SetGpio
+	
+	cmp r10,#1
+	beq menuS
+	bne menuH
+/*-------------------------------------------------*/
 
 
+/*-------------------------------------------------*/
 opcion3:
+@@mover a 90deg
+	mov r0, #21
+	mov r1,#1	@encendido
+	bl SetGpio
+	
+	@@DELAY
+	
+	mov r0, #21
+	mov r1,#1	@apagado
+	bl SetGpio
+	
+	cmp r10,#1
+	beq menuS
+	bne menuH
 @@TODO: FUNCION PARA MOVER 90
 
+/*-------------------------------------------------*/
 
 opcion4:
-@@TODO: FUNCION PARA MOVER 180
-PU	
+@@mover a 180
+
+	mov r0, #21
+	mov r1,#1    @encendido
+	bl SetGpio
+	
+	@@DELAY
+	
+	mov r0, #21
+	mov r1,#1	@apagado
+	bl SetGpio
+	
+	
+	cmp r10,#1
+	beq menuS
+	bne menuH
+/*-------------------------------------------------*/
+	
 error:
 	ldr r0,=error
 	bl printf
