@@ -15,7 +15,7 @@ main:
 	mov r0,#21
 	mov r1,#1
 	bl SetGpioFunction
-	*/
+	
 
 
 	@GPIO para lectura (entrada) puerto 26 [BOTON 1] 
@@ -31,6 +31,7 @@ main:
 	mov r0, #21
 	mov r1,#0
 	bl SetGpio
+	*/
 	
 	ldr r0,=Menumsj
 	bl puts
