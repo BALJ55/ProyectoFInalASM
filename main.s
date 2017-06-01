@@ -88,16 +88,18 @@ menuH:
 
 opcion1:
 @@mover a 0deg
-	ldr r0,=Menumsj
-	bl puts
+	
 
+	ldr r8,=delayReg
+    ldr r0,[r8]	
+	bl delay
+	
 	mov r0, #21
 	mov r1, #1	@encendido
 	bl SetGpio
 	
-	@@DELAY
-	ldr r8,=tiempo2
-    	ldr r0,[r8]	
+	ldr r8,=tiempo4
+    ldr r0,[r8]	
 	bl delay
 	
 	mov r0, #21
@@ -114,11 +116,18 @@ opcion1:
 
 opcion2:
 @@mover a 45deg
+
+	ldr r8,=delayReg	
+    ldr r0,[r8]	
+	bl delay
+	
 	mov r0, #21
 	mov r1,#1	@encendido
 	bl SetGpio
 	
-	@@DELAY
+	ldr r8,=tiempo3
+    ldr r0,[r8]	
+	bl delay
 	
 	mov r0, #21
 	mov r1,#1	@apagado
@@ -132,10 +141,18 @@ opcion2:
 /*-------------------------------------------------*/
 opcion3:
 @@mover a 90deg
+	ldr r8,=delayReg
+    ldr r0,[r8]	
+	bl delay
+	
 	mov r0, #21
 	mov r1,#1	@encendido
 	bl SetGpio
 	
+	
+	ldr r8,=tiempo2
+    ldr r0,[r8]	
+	bl delay
 	@@DELAY
 	
 	mov r0, #21
@@ -151,9 +168,17 @@ opcion3:
 opcion4:
 @@mover a 180
 
+ldr r8,=delayReg
+    ldr r0,[r8]	
+	bl delay
+
 	mov r0, #21
 	mov r1,#1    @encendido
 	bl SetGpio
+	
+	ldr r8,=tiempo1
+    ldr r0,[r8]	
+	bl delay
 	
 	@@DELAY
 	
