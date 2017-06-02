@@ -126,7 +126,7 @@ opcion2:
 @@mover a 45deg
 
 mov r6,#50
-	servo1:
+	servo2:
 		sub r6,r6,#1
 		cmp r6,#0
 		beq salida
@@ -148,7 +148,7 @@ mov r6,#50
 		ldr r0,[r0]
 		bl better_sleep
 		pop {r6}
-	b servo1	
+	b servo2	
 	mov r9, #0
 	b menuS
 	
@@ -158,7 +158,7 @@ mov r6,#50
 /*-------------------------------------------------*/
 opcion3:
 mov r6,#50
-	servo1:
+	servo3:
 		sub r6,r6,#1
 		cmp r6,#0
 		beq salida
@@ -180,7 +180,7 @@ mov r6,#50
 		ldr r0,[r0]
 		bl better_sleep
 		pop {r6}
-	b servo1	
+	b servo3	
 	mov r9, #0
 	b menuS
 
@@ -189,7 +189,7 @@ mov r6,#50
 opcion4:
 @@mover a 180
 mov r6,#50
-	servo1:
+	servo4:
 		sub r6,r6,#1
 		cmp r6,#0
 		beq salida
@@ -211,7 +211,7 @@ mov r6,#50
 		ldr r0,[r0]
 		bl better_sleep
 		pop {r6}
-	b servo1	
+	b servo4	
 	mov r9, #0
 	b menuS
 	
