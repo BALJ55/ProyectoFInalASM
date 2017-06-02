@@ -42,48 +42,27 @@ main:
 	beq menuH
 	bne error1
 	
-menu:
-	bl getchar
-	ldr r0,=selectO
-	bl puts
-	bl getchar
+	mov r7,#0;
 	
-	cmp r0,#'1'
-	beq menuS
-	cmp r0,#'2'
-	beq menuH
-	bne error1
-	
-menuS:
-	bl getchar
-	ldr r0,=optionsmsj
-	bl puts
-	bl getchar
-	
-	cmp r0,#'1'
-	beq opcion1
-	
-	cmp r0,#'2'
-	beq opcion2
-	
-	cmp r0,#'3'
-	beq opcion3
-	
-	cmp r0,#'4'
-	beq opcion4
+	bl menu;
 
-	cmp r0,#'5'
-	beq menuH
-
-	cmp r0,#'6'
-	beq salida
-	
-	bne errorS
-	
 menuH:
-	ldr r0,=formatoNum
-	mov r1, r9
-	bl printf
+	@revisar boton incremto
+	mov r0,#17
+	bl GetGpio
+	cmp r0,#1
+	bleq cambiarOp
+	@revisar boton decremento
+	mov r0,#27
+	bl GetGpio
+	cmp r0,#1
+	bleq select
+
+	ldr r0,=posicionActual
+	ldr r0,[r0]
+	bl setPosServo
+b mainLoop
+	
 
 @@TODO: FUNCION PARA CONTROLAR CON BOTONES 
 	/*-------------------------------------------------*/
@@ -258,7 +237,8 @@ compare:
 
 Menumsj: .asciz "Bienvenido al al programa\n "
 selectO: .asciz "Desea controlar el programa por texto o botones? (1/2)"
-optionsmsj: .asciz "Seleccione su opcion:\n 1)0deg\n 2)30deg\n 3)60deg\n 4)90deg\n 5)Controlar botones\n 6)Salir"
+optionsmsj: .asciz "Seleccione su opcion:\n 1)0deg\n 2)30deg\n 3)60deg\n 4)90deg\n 6)Salir"
+optionHrd: 	.asciz "presione el boton 1 para cambiar de opcion, presione el boton 2 para seleccionar"
 formatoNum: .asciz "%d"
 fill: .word 0
 error: .asciz "Opcion no valida, intente de nuevo"
