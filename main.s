@@ -48,12 +48,12 @@ main:
 
 menuH:
 	@revisar boton incremto
-	mov r0,#17
+	mov r0,#26
 	bl GetGpio
 	cmp r0,#1
 	bleq cambiarOp
 	@revisar boton decremento
-	mov r0,#27
+	mov r0,#19
 	bl GetGpio
 	cmp r0,#1
 	bleq select

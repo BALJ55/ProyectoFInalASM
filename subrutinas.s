@@ -1,6 +1,6 @@
 
 
-.global menuS, menu,cambiarOp,select
+.global menuS, menu,cambiarOp,select,GetGpio
 
 menu:
 	bl getchar
@@ -65,4 +65,34 @@ select:
 	beq opcion4
 	cmp r7,#5
 	b salir
+	
+	
+	
+GetGpio:
+	@guardando puerto a inspeccionar
+	mov r4,r0
+
+    @@ validacion, en caso no es un pin validdo regrea al progrma principal
+	cmp r4,#31
+	movgt pc,lr
+
+	push {lr}
+
+		ldr r6, =myloc
+	 	ldr r0, [r6] @ obtener direccion )xf3200000
+
+	    ldr r5,[r0,#0x34]
+		mov r7,#1
+		lsl r7,r4
+
+		and r5,r7 
+
+		@Si el boton esta en alto coloca 1 en r0, sino 0 en r0
+		teq r5,#0
+		movne r0,#1
+		moveq r0,#0
+
+	pop {pc}
+
+
 	
