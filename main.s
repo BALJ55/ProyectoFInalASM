@@ -5,6 +5,7 @@
  .text
  .align 2
  .global main
+
 main:
 
 	@utilizando la biblioteca GPIO (gpio0_2.s)
@@ -94,7 +95,7 @@ opcion1:
 	servo1:
 		sub r6,r6,#1
 		cmp r6,#0
-		beq salida
+		beq menuS
 		push {r6}
 		@encender GPIO 20
 		mov r0, #21
@@ -129,7 +130,7 @@ mov r6,#50
 	servo2:
 		sub r6,r6,#1
 		cmp r6,#0
-		beq salida
+		beq menuS
 		push {r6}
 		@encender GPIO 20
 		mov r0, #21
@@ -161,7 +162,7 @@ mov r6,#50
 	servo3:
 		sub r6,r6,#1
 		cmp r6,#0
-		beq salida
+		beq menuS
 		push {r6}
 		@encender GPIO 20
 		mov r0, #21
@@ -192,7 +193,7 @@ mov r6,#50
 	servo4:
 		sub r6,r6,#1
 		cmp r6,#0
-		beq salida
+		beq menuS
 		push {r6}
 		@encender GPIO 20
 		mov r0, #21
@@ -257,7 +258,7 @@ compare:
 
 Menumsj: .asciz "Bienvenido al al programa\n "
 selectO: .asciz "Desea controlar el programa por texto o botones? (1/2)"
-optionsmsj: .asciz "Seleccione su opcion:\n 1)0deg\n 2)45deg\n 3)90deg\n 4)180deg\n 5)Controlar botones\n 6)Salir"
+optionsmsj: .asciz "Seleccione su opcion:\n 1)0deg\n 2)30deg\n 3)60deg\n 4)90deg\n 5)Controlar botones\n 6)Salir"
 formatoNum: .asciz "%d"
 fill: .word 0
 error: .asciz "Opcion no valida, intente de nuevo"
