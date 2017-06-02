@@ -1,4 +1,7 @@
 
+
+
+/*gcc -o main phys_to_virt.c gpio0_2.s timeLibV2.c main.s*/
  .text
  .align 2
  .global main
@@ -15,8 +18,6 @@ main:
 	mov r0,#5 @@21
 	mov r1,#1
 	bl SetGpioFunction
-	
-
 
 	@GPIO para lectura (entrada) puerto 26 [BOTON 1] 
 	mov r0,#6 @@26
@@ -88,24 +89,31 @@ menuH:
 
 opcion1:
 @@mover a 0deg
-	
 
-	ldr r8,=delayReg
-    ldr r0,[r8]	
-	bl delay
-	
-	mov r0, #21
-	mov r1, #1	@encendido
-	bl SetGpio
-	
-	ldr r8,=tiempo4
-    ldr r0,[r8]	
-	bl delay
-	
-	mov r0, #21
-	mov r1,#1	@apagado
-	bl SetGpio
-	
+	mov r6,#50
+	servo1:
+		sub r6,r6,#1
+		cmp r6,#0
+		beq salida
+		push {r6}
+		@encender GPIO 20
+		mov r0, #21
+		mov r1, #1	@encendido
+		bl SetGpio
+			
+		ldr r0,=encendido0
+		ldr r0,[r0]
+		bl better_sleep
+
+		mov r0, #21
+		mov r1,#1	@apagado
+		bl SetGpio
+		
+		ldr r0,=apagado0
+		ldr r0,[r0]
+		bl better_sleep
+		pop {r6}
+	b servo1	
 	mov r9, #0
 	b menuS
 	
@@ -117,77 +125,96 @@ opcion1:
 opcion2:
 @@mover a 45deg
 
-	ldr r8,=delayReg	
-    ldr r0,[r8]	
-	bl delay
-	
-	mov r0, #21
-	mov r1,#1	@encendido
-	bl SetGpio
-	
-	ldr r8,=tiempo3
-    ldr r0,[r8]	
-	bl delay
-	
-	mov r0, #21
-	mov r1,#1	@apagado
-	bl SetGpio
-	
-	mov r9,#1
+mov r6,#50
+	servo1:
+		sub r6,r6,#1
+		cmp r6,#0
+		beq salida
+		push {r6}
+		@encender GPIO 20
+		mov r0, #21
+		mov r1, #1	@encendido
+		bl SetGpio
+			
+		ldr r0,=encendido30
+		ldr r0,[r0]
+		bl better_sleep
+
+		mov r0, #21
+		mov r1,#1	@apagado
+		bl SetGpio
+		
+		ldr r0,=apagado30
+		ldr r0,[r0]
+		bl better_sleep
+		pop {r6}
+	b servo1	
+	mov r9, #0
 	b menuS
+	
 /*-------------------------------------------------*/
 
 
 /*-------------------------------------------------*/
 opcion3:
-@@mover a 90deg
-	ldr r8,=delayReg
-    ldr r0,[r8]	
-	bl delay
-	
-	mov r0, #21
-	mov r1,#1	@encendido
-	bl SetGpio
-	
-	
-	ldr r8,=tiempo2
-    ldr r0,[r8]	
-	bl delay
-	@@DELAY
-	
-	mov r0, #21
-	mov r1,#1	@apagado
-	bl SetGpio
-	
-	mov r9, #2
+mov r6,#50
+	servo1:
+		sub r6,r6,#1
+		cmp r6,#0
+		beq salida
+		push {r6}
+		@encender GPIO 20
+		mov r0, #21
+		mov r1, #1	@encendido
+		bl SetGpio
+			
+		ldr r0,=encendido60
+		ldr r0,[r0]
+		bl better_sleep
+
+		mov r0, #21
+		mov r1,#1	@apagado
+		bl SetGpio
+		
+		ldr r0,=apagado60
+		ldr r0,[r0]
+		bl better_sleep
+		pop {r6}
+	b servo1	
+	mov r9, #0
 	b menuS
-@@TODO: FUNCION PARA MOVER 90
 
 /*-------------------------------------------------*/
 
 opcion4:
 @@mover a 180
+mov r6,#50
+	servo1:
+		sub r6,r6,#1
+		cmp r6,#0
+		beq salida
+		push {r6}
+		@encender GPIO 20
+		mov r0, #21
+		mov r1, #1	@encendido
+		bl SetGpio
+			
+		ldr r0,=encendido90
+		ldr r0,[r0]
+		bl better_sleep
 
-ldr r8,=delayReg
-    ldr r0,[r8]	
-	bl delay
-
-	mov r0, #21
-	mov r1,#1    @encendido
-	bl SetGpio
-	
-	ldr r8,=tiempo1
-    ldr r0,[r8]	
-	bl delay
-	
-	@@DELAY
-	
-	mov r0, #21
-	mov r1,#1	@apagado
-	bl SetGpio
-	
-	mov r9, #3
+		mov r0, #21
+		mov r1,#1	@apagado
+		bl SetGpio
+		
+		ldr r0,=apagado90
+		ldr r0,[r0]
+		bl better_sleep
+		pop {r6}
+	b servo1	
+	mov r9, #0
 	b menuS
+	
 /*-------------------------------------------------*/
 salida:
 	mov r0,#0
@@ -235,14 +262,32 @@ formatoNum: .asciz "%d"
 fill: .word 0
 error: .asciz "Opcion no valida, intente de nuevo"
 myloc: .word 0
-tiempo1:
-	.word 645000
-tiempo2:
-	.word 540000
-tiempo3:
-	.word 300000
-tiempo4:
-	.word 150000
-delayReg:
-	.word 3000000
-@@ZONA DE STRINGS
+
+
+@@0 deg
+	apagado0: .word 19565000
+	encendido0: .word 435000
+	
+@@30 deg
+	apagado30: .word 19400000
+	encendido30: .word 600000
+	
+@@60 deg
+	apagado60: .word 19205000
+	encendido60: .word 795000
+	
+@@90 deg
+	apagado90: .word 18761000
+	encendido90: .word 1239000
+	
+@@120 deg
+	apagado120: .word 18500000
+	encendido120: .word 1500000
+	
+@@150 deg
+	apagado150: .word 18125000
+	encendido150: .word 1875000
+	
+@@180 deg
+	apagado180: .word 17750000
+	encendido180: .word 2250000
